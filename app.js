@@ -10,18 +10,20 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.listen(4000, () => {
- console.log("Server running on port 4000");
+app.listen(80, () => {
+ console.log("Server running on port 80");
 });
         
+app.listen(443, () => {
+    console.log("Server running on port 443");
+});
 
 app.post("/", (req, res) => {
-    console.log("Method called is -- ", req.method)
-    console.log(req.body['signTrx'])
+    // console.log("Method called is -- ", req.method)
+    // console.log(req.body['signTrx'])
     try{
         relayTransaction(req.body['signTrx'], req.body['data'], req.body['signer'], req.body['address'])
     }catch(e){
-        console.log(e)
     }
     res.end()
  })
