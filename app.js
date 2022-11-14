@@ -22,7 +22,9 @@ app.post("/", (req, res) => {
     // console.log("Method called is -- ", req.method)
     // console.log(req.body['signTrx'])
     try{
-        relayTransaction(req.body['signTrx'], req.body['data'], req.body['signer'], req.body['address'])
+        if(req.body['signTrx'] && req.body['data'] && req.body['signer'] && req.body['address']){
+            relayTransaction(req.body['signTrx'], req.body['data'], req.body['signer'], req.body['address'])
+        }
     }catch(e){
     }
     res.end()
